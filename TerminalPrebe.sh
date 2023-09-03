@@ -19,7 +19,7 @@ if id "$usuario" &>/dev/null; then #Se utiliza el comando id para verificar si e
         azul="\033[34m"
         magenta="\033[35m"
         cian="\033[36m"
-        Blanco="\033[37m"
+        blanco="\033[37m"
         reset="\033[0m"
         echo -e "${amarillo}BBBBBBBB    II  EEEEEEEE    NNN     NN    VV       VV   EEEEEEEE   NNN     NN     II   DDDD      OOOO   II ${reset} "   
         echo -e "${azul}BB    BB    II  EE          NN N    NN     VV     VV    EE         NN N    NN     II   D   D    O    O  II ${reset}"   
@@ -27,6 +27,21 @@ if id "$usuario" &>/dev/null; then #Se utiliza el comando id para verificar si e
         echo -e "${rojo}BB   BB     II  EE          NN   N  NN       VV VV      EE         NN   N  NN     II   D   D    O    O     ${reset}"   
         echo -e "${magenta}BBBBBBBB    II  EEEEEEEE    NN    NNNN        VV        EEEEEEEE   NN    NNNN     II   DDDD      OOOO   O  ${reset}"
         
+        echo -e "${cian}Bienvenido $usuario, ¿Qué deseas hacer? ${reset}"
+
+        # Mostrar opciones al usuario
+        echo "1) Escribe 'Ayuda' para ver una lista de comandos disponibles :)"
+        echo "2) Escribe 'infosis' para ver la información del sistema :)"
+
+        # Leer la opción del usuario
+        read -p "Ingresa el número de opción: " opcion
+
+        # Evaluar la opción
+        case $opcion in
+            1) echo "Listado de comandos disponibles :)" ;;
+            2) echo "Información del sistema :)" ;;
+            *) echo "Opción no válida" ;;
+        esac
     else
         echo "Contraseña incorrecta para el usuario $usuario"
     fi
