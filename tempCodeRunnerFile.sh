@@ -87,39 +87,10 @@ if id "$usuario" &>/dev/null; then
 
             "time")
                 # Obtiene la hora actual
-                time=$(timedatectl)
+                time=$(timedatectl -f "%d %B %Y %H:%M:%S")
+
                 # Muestra la hora actual
                 echo "La hora actual es: $time"
-                ;;
-
-
-
-
-
-            "find")
-            # Verifica si se proporcionaron los dos parámetros
-            if [ $# -ne 2 ]; then
-                echo "Uso: $0 <directorio> <nombre_de_archivo>"
-                exit 1
-            fi
-
-            directorio="$1"
-            archivo_a_buscar="$2"
-
-            # Utiliza el comando find para buscar el archivo en el directorio especificado
-            resultado=$(find "$directorio" -name "$archivo_a_buscar")
-
-            # Verifica si el archivo fue encontrado
-            if [ -n "$resultado" ]; then
-                echo "El archivo $archivo_a_buscar fue encontrado en el directorio $directorio."
-            else
-                echo "El archivo $archivo_a_buscar no fue encontrado en el directorio $directorio."
-            fi
-
-            ;;
-
-            
-
             *)
                 echo "Opción no válida :(" ;;
         esac
