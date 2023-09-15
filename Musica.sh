@@ -36,49 +36,46 @@ echo
 echo -e "${cian}Carpeta actual: $carpeta_actual ${reset}"
 echo -e "${cian}¿Que desea hacer?${reset}"
 echo
-echo "Las siguientes opciones son todas en base a tu directorio actual"
-echo "1) Reproducir una canción"
-echo "2) Reproducir una carpeta especifica de canciones"
-echo "3) Reproducir todas las canciones de carpeta actual"
-echo "4) Cambiar de directorio donde reproducir musica"
-echo "5) Salir"
 cic=0
 while cic=0 ; do
+    echo "Las siguientes opciones son todas en base a tu directorio actual"
+    echo "1) Reproducir una canción"
+    echo "2) Reproducir una carpeta especifica de canciones"
+    echo "3) Reproducir todas las canciones de carpeta actual"
+    echo "4) Cambiar de directorio donde reproducir musica"
+    echo "5) Salir"
     read -rp "Opción: " accion
     case $accion in
         "1")
             read -rp "Nombre de canción: " song
-            #song="${song// /\\ }";
-            #song=$(echo "$song" | sed "s/ /\\ \g" "$song")
             song=$(echo "$song" | tr " " "\\ ")
             echo "$song"
-            #comand=$(mpg123 "$song")
-            #exec $comand
             mpg123 "$song"
-            h
+            clear
         ;;
         "2")
-            read -rp "Nombre de la carpeta donde tienes la playlist: " lista
-            lista="${lista// /\\ }";
-            echo "" > orden.txt
-            #cd "$lista" || echo "Carpeta no encontrada"
-            for i in ./$lista/; do 
-                name=$(echo "$i"*)
-                name=$(echo "$name" | tr " " "\\ ")
-                #name="${name// /\\ }"
-                echo $name
-                echo "$name" >> orden.txt
-            done
-            rm "$lista.txt"
-            mpg123 -@ orden.txt
+            echo "no esta bien implementado"
+            echo
+            #read -rp "Nombre de la carpeta donde tienes la playlist: " lista
+            #lista="$(echo "$lista" | tr " " "\\ " )";
+            #echo "" > orden.txt
+            #for i in ./$lista/; do 
+            #    name=$(echo "$i"*)
+            #    echo "$name" >> orden.txt
+            #done
+            #sed 's/ /\\ ' orden.txt
+            #mpg123 -@ orden.txt
         ;;
         "3")
             echo "no Esta implementado"
+            echo
         ;;
         "4")
-            echo "Escribe la ruta del directorio donde se encuentran tus canciones"
-            read -r ruta
-            cd "$ruta" || echo "No se pudo cambiar de directorio"
+            echo "no Esta implementado"
+            echo
+            #echo "Escribe la ruta del directorio donde se encuentran tus canciones"
+            #read -r ruta
+            #cd "$ruta" || echo "No se pudo cambiar de directorio"
         ;;
         "5")
             cic=$cic+1
