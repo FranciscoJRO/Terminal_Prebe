@@ -38,7 +38,7 @@ if id "$usuario" &>/dev/null; then
         echo " Escribe 'time' para ver la hora actual :)"
 
         # Leer la opción del usuario
-        read -pr "Ingresa la palabra clave de la opción: " opcion
+        read -p "Ingresa la palabra clave de la opción: " opcion
 
         # Evaluar la opción
         case $opcion in
