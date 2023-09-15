@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echo "Hola, por favor ingresa tu nombre de usuario:"
-read usuario
+read -r usuario
 echo "Contraseña:"
-read -s contrasena
+read -sr contrasena
 
 # Comprueba si el usuario existe en el sistema
 if id "$usuario" &>/dev/null; then
@@ -38,7 +38,7 @@ if id "$usuario" &>/dev/null; then
         echo " Escribe 'time' para ver la hora actual :)"
 
         # Leer la opción del usuario
-        read -p "Ingresa la palabra clave de la opción: " opcion
+        read -pr "Ingresa la palabra clave de la opción: " opcion
 
         # Evaluar la opción
         case $opcion in
