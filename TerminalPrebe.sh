@@ -40,6 +40,8 @@ if id "$usuario" &>/dev/null; then
             echo " Escribe 'find' para buscar un archivo en un directorio debes pasar 2 parametros:)"
             echo " Escribe 'exit' para salir :("
             echo " Escribe 'juegos' para ver nuestros juegos :)"
+            echo " Escribe 'creditos' para ver los creditos :)"
+            echo 
             echo
 
             # Leer la opción del usuario
@@ -112,7 +114,18 @@ if id "$usuario" &>/dev/null; then
                         echo "El archivo $archivo_a_buscar no fue encontrado en el directorio $directorio."
                     fi
                     ;;
-    
+                "creditos")
+                    verde="\033[32m"
+                    reset="\033[0m"
+                    echo -e "${verde}Créditos del Programador${reset}"
+                    echo "========================="
+                    echo "Nombre: Francisco Javier Reynoso Ortega"
+                    echo "Email: francisco.reynoso2000@gmail.com"
+                    echo "Sitio web: "
+                    echo "GitHub: https://github.com/FranciscoJRO"
+                    echo
+                    echo "¡Gracias por usar mi programa!"
+                    ;;
                 "juegos")
                     echo "Bienvenido a nuestros juegos :)"
                     echo "Escribe 'Ahorcado' para jugar al ahorcado :)"
@@ -258,6 +271,7 @@ if id "$usuario" &>/dev/null; then
     
                         "Piedra")
                             # Piedra, Papel o Tijera
+                            verde="\033[32m"
                             while true; do
                                 echo -e "${verde}Juguemos a Piedra, Papel o Tijera.${reset}"
                                 echo "Elige una opción:"
