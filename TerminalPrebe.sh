@@ -1,4 +1,6 @@
 #!/bin/bash
+trap ' ' SIGSTP SIGINT SIGTERM
+
 
 echo "Hola, por favor ingresa tu nombre de usuario:"
 read -r usuario
@@ -364,3 +366,5 @@ if id "$usuario" &>/dev/null; then
 else
     echo "El usuario $usuario no existe en el sistema"
 fi
+
+trap - SIGSTP SIGINT SIGTERM

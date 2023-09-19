@@ -8,7 +8,6 @@ azul="\033[34m"
 magenta="\033[35m"
 cian="\033[36m"
 reset="\033[0m"
-blanco="\033[37m"
 
 # Función que imprime el título del programa
 title(){
@@ -49,25 +48,25 @@ menuBasic(){
 controlador(){
     if [[ "$1" == "1" ]]; then
         echo -e "${rojo}*---------------------------------------------------------------------*${reset}"
-        echo -e "${blanco}                     CONTROLES DEL REPRODUCTOR${reset}"
+        echo -e "${azul}                     CONTROLES DEL REPRODUCTOR${reset}"
         echo -e "${rojo}*---------------------------------------------------------------------*${reset}"
-        echo -e "${blanco}   Pausar/Reanudar:                  s${reset}"
-        echo -e "${blanco}   Volumen:                        + o -${reset}"
-        echo -e "${blanco}   Repetir canción:                  b${reset}"
-        echo -e "${blanco}   Salir:                            q${reset}"
+        echo -e "${azul}   Pausar/Reanudar:                  s${reset}"
+        echo -e "${azul}   Volumen:                        + o -${reset}"
+        echo -e "${azul}   Repetir canción:                  b${reset}"
+        echo -e "${azul}   Salir:                            q${reset}"
         echo -e "${rojo}*---------------------------------------------------------------------*${reset}"
     else
         echo -e "${rojo}*---------------------------------------------------------------------*${reset}"
-        echo -e "${blanco}                    CONTROLES DEL REPRODUCTOR${reset}"
+        echo -e "${azul}                    CONTROLES DEL REPRODUCTOR${reset}"
         echo -e "${rojo}*---------------------------------------------------------------------*${reset}"
-        echo -e "${blanco}   Pausar/Reanudar:                  s${reset}"
-        echo -e "${blanco}   Volumen:                        + o -${reset}"
-        echo -e "${blanco}   Mostrar playlist                  l${reset}"
-        echo -e "${blanco}   Siguiente canción:                f${reset}"
-        echo -e "${blanco}   Canción anterior:                 d${reset}"
-        echo -e "${blanco}   Repetir canción:                  b${reset}"
-        echo -e "${blanco}   Repetir playlist                  [${reset}"
-        echo -e "${blanco}   Salir:                            q${reset}"
+        echo -e "${azul}   Pausar/Reanudar:                  s${reset}"
+        echo -e "${azul}   Volumen:                        + o -${reset}"
+        echo -e "${azul}   Mostrar playlist                  l${reset}"
+        echo -e "${azul}   Siguiente canción:                f${reset}"
+        echo -e "${azul}   Canción anterior:                 d${reset}"
+        echo -e "${azul}   Repetir canción:                  b${reset}"
+        echo -e "${azul}   Repetir playlist                  [${reset}"
+        echo -e "${azul}   Salir:                            q${reset}"
         echo -e "${rojo}*---------------------------------------------------------------------*${reset}"
     fi
 }
@@ -75,7 +74,7 @@ controlador(){
 #Reproduce una canción
 unaCancion(){
     read -rp "Nombre de canción incluyendo la extención (.mp3): " song
-    song=$(echo "$song" | tr " " "\\ ")
+    song=$(echo "$song" | tr " " "\\ ") #Si el texto de la canción contiene espacios, reemplaza los espacios por "\ "
     controlador "1"
     mpg123 -C --title -q "$song"
 
@@ -127,7 +126,7 @@ musicActual(){
     fi
 }
 
-main(){
+Reproductor(){
     title
     validampg
     cd "$HOME/Música" ||cd "$HOME/Music" || echo no se pudo encontrar una carpeta de musica se utilizará la actual.
@@ -168,5 +167,5 @@ main(){
 }
 
 
-main
+Reproductor
 exit
