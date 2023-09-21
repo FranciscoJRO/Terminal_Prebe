@@ -12,6 +12,7 @@ trap ' ' SIGINT SIGTERM #Evita que las señales mandadas por ctrl+c y ctrl+z sea
 
 
 InfoSistema(){
+    echo
     echo "Información del sistema :)"
     echo
     echo "Nombre del equipo: $(hostname)"
@@ -51,6 +52,7 @@ InfoSistema(){
 }
 
 tiempo(){
+    echo
     # Obtiene la hora actual
     time=$(timedatectl)
     # Muestra la hora actual
@@ -58,42 +60,61 @@ tiempo(){
 }
 
 busqueda(){
+    echo
     echo "Debes ingresar los parámetros de la siguiente manera: /ruta/a/mi/directorio miarchivo.txt"
     # Leer el directorio y el nombre del archivo
-    read -p "Ingresa el directorio: " directorio
-    read -p "Ingresa el nombre del archivo: " archivo_a_buscar
+    read -rp "Ingresa el directorio: " directorio
+    read -rp "Ingresa el nombre del archivo: " archivo_a_buscar
 
     # Utiliza el comando find para buscar el archivo en el directorio especificado
-    resultado=$(find "$directorio" -name "$archivo_a_buscar")
+    #resultado=$(find "$directorio" -name "$archivo_a_buscar")
+    echo
+    actual=$(pwd)
+    cd "$directorio" || echo no se encontró el directorio objetivo, se realizará la busqueda en directorio actual
 
+    for file in *; do
+        if [ "$file" == "$archivo_a_buscar" ]; then
+            resultado="true"
+        fi
+    done
+    echo
     # Verifica si el archivo fue encontrado
-    if [ -n "$resultado" ]; then
+    if [ "$resultado" == "true" ]; then
         echo "El archivo $archivo_a_buscar fue encontrado en el directorio $directorio."
     else
         echo "El archivo $archivo_a_buscar no fue encontrado en el directorio $directorio."
     fi
+    cd "$actual" || return
+    echo
 }
 
 infoPrograma(){
+    echo
     verde="\033[32m"
     reset="\033[0m"
-    echo -e "${verde}Créditos del Programador${reset}"
+    echo -e "${verde}Créditos de Programadores${reset}"
     echo "========================="
     echo "Nombre: Francisco Javier Reynoso Ortega"
     echo "Email: francisco.reynoso2000@gmail.com"
     echo "Sitio web: "
     echo "GitHub: https://github.com/FranciscoJRO"
     echo
-    echo "¡Gracias por usar mi programa!"
+    echo "Nombre: Oscar Manuel Suaznavar Arvizu"
+    echo "Email: omanuel_suaznavar@hotmail.com"
+    echo "Sitio web: "
+    echo "GitHub: https://github.com/OscarSuaz"
+    echo "¡Gracias por usar nuestro programa!"
 }
 
 ayuda(){
+    echo
     echo " Escribe 'Ayuda' para ver una lista de comandos disponibles :)"
     echo " Escribe 'infosis' para ver la información del sistema :)"
     echo " Escribe 'time' para ver la hora actual :)"
     echo " Escribe 'find' para buscar un archivo en un directorio debes pasar 2 parametros:)"
     echo " Escribe 'exit' para salir :("
     echo " Escribe 'juegos' para ver nuestros juegos :)"
+    echo " Escribe 'musica' para el reproductor mp3 :)"
     echo " Escribe 'creditos' para ver los creditos :)"
 }
 
@@ -290,23 +311,24 @@ PPT(){
 }
 
 games(){
+    echo
     echo "Bienvenido a nuestros juegos :)"
     echo "Escribe 'Ahorcado' para jugar al ahorcado :)"
     echo "Escribe 'Piedra' para jugar a piedra papel o tijera :)"
     echo "Escribe 'Salir' para salir de los juegos :("
-    read -p "Ingresa la palabra clave de la opción: " opcion_juegos
+    read -rp "Ingresa la palabra clave de la opción: " opcion_juegos
     #A lo mejor hacerlo un bucle
 
     case $opcion_juegos in
-        "Ahorcado")
+        "ahorcado")
             hangman
             ;;
 
-        "Piedra")
+        "piedra")
             PPT
             ;;
 
-        "Salir")
+        "salir")
             echo "Saliendo de los juegos."
             return
             ;;
@@ -315,6 +337,14 @@ games(){
             echo "Opción de juegos no válida :("
             ;;
     esac
+}
+
+prompt(){
+    carpeta_actual=$(pwd)
+    echo
+    echo -e "${cian}Carpeta actual: $carpeta_actual ${reset}"
+    echo
+    echo -e "${cian}Bienvenido $usuario, ¿Qué deseas hacer? ${reset}"
 }
 
 start(){
@@ -328,29 +358,26 @@ start(){
         # Intenta autenticar al usuario usando su contraseña
         if su -c "exit" - "$usuario" <<< "$contrasena" 2>/dev/null; then
             echo "Inicio de sesión exitoso para el usuario $usuario"
-
+            carpProgram=$(pwd)
             
             echo -e "${amarillo}BBBBBBBB    II  EEEEEEEE    NNN     NN    VV       VV   EEEEEEEE   NNN     NN     II   DDDD      OOOO   II ${reset}"
             echo -e "${azul}BB    BB    II  EE          NN N    NN     VV     VV    EE         NN N    NN     II   D   D    O    O  II ${reset}"
             echo -e "${verde}BBBBBB      II  EEEEEEE     NN  N   NN      VV   VV     EEEEEEE    NN  N   NN     II   D    D   O    O  II ${reset}"
             echo -e "${rojo}BB   BB     II  EE          NN   N  NN       VV VV      EE         NN   N  NN     II   D   D    O    O     ${reset}"
             echo -e "${magenta}BBBBBBBB    II  EEEEEEEE    NN    NNNN        VV        EEEEEEEE   NN    NNNN     II   DDDD      OOOO   O  ${reset}"
+
+            # Obtener la carpeta actual
+            #prompt
+            echo
+            #menú de opciones del menú principal
+            ayuda 
+            #echo 
+            echo
             while true; do
-                # Obtener la carpeta actual
-                carpeta_actual=$(pwd)
-
-                echo
-                echo -e "${cian}Carpeta actual: $carpeta_actual ${reset}"
-                echo
-                echo -e "${cian}Bienvenido $usuario, ¿Qué deseas hacer? ${reset}"
-                echo
-                ayuda #menú de opciones del menú principal
-                echo 
-                echo
-
+                prompt
                 # Leer la opción del usuario
-                read -p "Ingresa la palabra clave de la opción: " opcion
-
+                #read -rp "Ingresa la palabra clave de la opción: " opcion
+                read -r opcion
                 # Evaluar la opción
                 case $opcion in
                     "Ayuda")
@@ -374,14 +401,16 @@ start(){
                     "juegos")
                         games
                         ;;
-
+                    "musica")
+                        "$carpProgram"/Musica.sh
+                        ;;
                     "exit")
                         echo "Saliendo del sistema :("
                         exit 0 
                         ;;
 
                     *)
-                        echo "Opción no válida :("
+                        eval "$opcion"
                         ;;
                 esac
             done
