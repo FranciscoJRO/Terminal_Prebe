@@ -1,5 +1,5 @@
 #!/bin/bash
-trap ' ' SIGINT SIGTERM #Evita que las señales mandadas por ctrl+c y ctrl+z sean leídas
+trap ' ' 2 20 #Evita que las señales mandadas por ctrl+c y ctrl+z sean leídas
 # Colores de texto
             rojo="\033[31m"
             verde="\033[32m"
@@ -427,4 +427,4 @@ start(){
 
 start
 
-trap - SIGINT SIGTERM
+trap - 2 20
