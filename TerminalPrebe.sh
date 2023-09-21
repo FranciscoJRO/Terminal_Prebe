@@ -7,7 +7,6 @@ trap ' ' SIGINT SIGTERM #Evita que las señales mandadas por ctrl+c y ctrl+z sea
             azul="\033[34m"
             magenta="\033[35m"
             cian="\033[36m"
-            blanco="\033[37m"
             reset="\033[0m"
 
 
@@ -313,30 +312,33 @@ PPT(){
 games(){
     echo
     echo "Bienvenido a nuestros juegos :)"
-    echo "Escribe 'Ahorcado' para jugar al ahorcado :)"
-    echo "Escribe 'Piedra' para jugar a piedra papel o tijera :)"
-    echo "Escribe 'Salir' para salir de los juegos :("
-    read -rp "Ingresa la palabra clave de la opción: " opcion_juegos
-    #A lo mejor hacerlo un bucle
+    while true; do
+        echo "Escribe 'ahorcado' para jugar al ahorcado :)"
+        echo "Escribe 'piedra' para jugar a piedra papel o tijera :)"
+        echo "Escribe 'salir' para salir de los juegos :("
+        read -rp "Ingresa la palabra clave de la opción: " opcion_juegos
+        #A lo mejor hacerlo un bucle
 
-    case $opcion_juegos in
-        "ahorcado")
-            hangman
-            ;;
+        case $opcion_juegos in
+            "ahorcado")
+                hangman
+                ;;
 
-        "piedra")
-            PPT
-            ;;
+            "piedra")
+                PPT
+                ;;
 
-        "salir")
-            echo "Saliendo de los juegos."
-            return
-            ;;
+            "salir")
+                echo "Saliendo de los juegos."
+                return
+                ;;
 
-        *)
-            echo "Opción de juegos no válida :("
-            ;;
-    esac
+            *)
+                echo "Opción de juegos no válida :("
+                echo
+                ;;
+        esac
+    done
 }
 
 prompt(){
@@ -358,7 +360,7 @@ start(){
         # Intenta autenticar al usuario usando su contraseña
         if su -c "exit" - "$usuario" <<< "$contrasena" 2>/dev/null; then
             echo "Inicio de sesión exitoso para el usuario $usuario"
-            carpProgram=$(pwd)
+            #carpProgram=$(pwd)
             
             echo -e "${amarillo}BBBBBBBB    II  EEEEEEEE    NNN     NN    VV       VV   EEEEEEEE   NNN     NN     II   DDDD      OOOO   II ${reset}"
             echo -e "${azul}BB    BB    II  EE          NN N    NN     VV     VV    EE         NN N    NN     II   D   D    O    O  II ${reset}"
@@ -402,7 +404,7 @@ start(){
                         games
                         ;;
                     "musica")
-                        "$carpProgram"/Musica.sh
+                        source Musica.sh
                         ;;
                     "exit")
                         echo "Saliendo del sistema :("

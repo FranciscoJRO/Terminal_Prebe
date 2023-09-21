@@ -158,7 +158,7 @@ Reproductor(){
             ;;
             "5")
                 cic=$cic+1
-                exit
+                return
             ;;
             *)
                 echo "Opción no valida"
