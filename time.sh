@@ -27,7 +27,7 @@ trap ' ' 2 20
                                                         ███ ████████▀▄░███████    ██████████████████████████████▀▌█▀█▐▀██████████▄ ███                                                        
                                                         ██ █████████ ██████████    ██████████████████████████████▌▌▄▐▐███████/)/\█ ███   "
 # Obtener la hora y fecha actual 
-grep "rtc_time" /proc/driver/rtc | awk '{print "La hora actual es: "$3}'
+zdump /etc/localtime | awk '{print "La hora actual es: "$5}'
 grep "rtc_date" /proc/driver/rtc | awk '{print "La fecha de hoy es: "$3}'
 
 trap - 2 20
