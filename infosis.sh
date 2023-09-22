@@ -1,4 +1,6 @@
 #!/bin/bash
+trap ' ' 2 20
+
 
                     echo "Información del sistema :)"
                     echo ".... NO! ...                  ... MNO! ...                          
@@ -59,3 +61,5 @@
                         version_so=$(lsb_release -d | awk -F ":\t" '{print $2}')
                         echo "Versión del sistema operativo: $version_so"
                     fi
+
+trap - 2 20

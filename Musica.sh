@@ -1,4 +1,5 @@
 #!/bin/bash
+trap ' ' 2 20
 
 # Colores de texto
 rojo="\033[31m"
@@ -11,12 +12,12 @@ reset="\033[0m"
 
 # Función que imprime el título del programa
 title(){
-    echo -e "${amarillo}MM        MM   U    U   SSS   II   CCCCC       A${reset}"
-    echo -e "${azul}M M      M M   U    U  S      II  CC          A A${reset}"
-    echo -e "${verde}M  M    M  M   U    U   SS    II  CC         AAAAA${reset}"
-    echo -e "${rojo}M   M  M   M   U    U     S   II  CC        A     A${reset}"
-    echo -e "${magenta}M    MM    M    UUUU   SSS    II   CCCCC   A       A${reset}"
-    echo 
+echo -e "${rojo}        ███╗   ███╗██╗   ██╗███████╗██╗ ██████╗ █████╗${reset}" 
+echo -e "${verde}        ████╗ ████║██║   ██║██╔════╝██║██╔════╝██╔══██╗${reset}"
+echo -e "${amarillo}        ██╔████╔██║██║   ██║███████╗██║██║     ███████║${reset}"
+echo -e "${azul}        ██║╚██╔╝██║██║   ██║╚════██║██║██║     ██╔══██║${reset}"
+echo -e "${magenta}        ██║ ╚═╝ ██║╚██████╔╝███████║██║╚██████╗██║  ██║${reset}"
+echo -e "${cian}        ╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝  ╚═╝${reset}"
 }
 
 #Valida si está instalado el reproductor, si no lo está, da opción de instalarlo
@@ -168,4 +169,5 @@ Reproductor(){
 
 
 Reproductor
-exit
+
+trap - 2 20

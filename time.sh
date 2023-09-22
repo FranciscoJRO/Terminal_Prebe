@@ -1,4 +1,5 @@
-#!bin/bash
+#!/bin/bash
+trap ' ' 2 20
 
         echo "                                                        ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                                      
                                                         █████ ▄▄ █ ▄▄ █ ▄▄ █▄ ▄█ ▄▄ █ █ ▄▄ ███████████████████████████████████████████                                                        
@@ -25,8 +26,8 @@
                                                         ███▀▄█████████▀▄░█████▀   ██████████████████████████████▀▄▌█▐▄▀██████████ ████                                                        
                                                         ███ ████████▀▄░███████    ██████████████████████████████▀▌█▀█▐▀██████████▄ ███                                                        
                                                         ██ █████████ ██████████    ██████████████████████████████▌▌▄▐▐███████/)/\█ ███   "
-# Obtener la hora actual del prompt
-hora_actual="$(echo "$PS1" | grep -oP '\d{2}:\d{2}:\d{2}')"
+# Obtener la hora y fecha actual 
+zdump /etc/localtime | awk '{print "La hora actual es: "$5}'
+grep "rtc_date" /proc/driver/rtc | awk '{print "La fecha de hoy es: "$3}'
 
-# Imprimir la hora actual
-echo "La hora actual es: $hora_actual"
+trap - 2 20
