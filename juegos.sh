@@ -1,4 +1,6 @@
 #!/bin/bash
+trap ' ' 2 20
+
 # Imprimir diseño
 echo -e "\e[36m           █▀▀▀ █▀▀█ █▀▄▀█ █▀▀ "
 echo -e "\e[36m           █░▀█ █▄▄█ █░▀░█ █▀▀ "
@@ -25,7 +27,7 @@ while true; do
       \`\"--......--\"\`"
 
     echo "Bienvenido a nuestros juegos :)"
-    echo "Escribe 'Magica' para jugar al ahorcado :)"
+    echo "Escribe 'Magica' para jugar al adivina el número :)"
     echo "Escribe 'Piedra' para jugar a piedra papel o tijera :)"
     echo "Escribe 'Salir' para salir de los juegos :("
     read -p "Ingresa la palabra clave de la opción: " opcion_juegos
@@ -172,3 +174,5 @@ while true; do
         ;;
     esac
 done
+
+trap - 2 20
