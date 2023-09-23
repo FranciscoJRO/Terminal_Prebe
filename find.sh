@@ -12,7 +12,7 @@ echo
     echo
     actual=$(pwd)
     cd "$directorio" || echo no se encontró el directorio objetivo, se realizará la busqueda en directorio actual
-
+    file="false"
     for file in *; do
         if [ "$file" == "$archivo_a_buscar" ]; then
             resultado="true"
